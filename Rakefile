@@ -37,22 +37,6 @@ namespace :spec do
     Spec::Rubygems.dev_setup
   end
 
-  namespace :travis do
-    task :deps do
-      # Give the travis user a name so that git won't fatally error
-      system "sudo sed -i 's/1000::/1000:Travis:/g' /etc/passwd"
-      # Strip secure_path so that RVM paths transmit through sudo -E
-      system "sudo sed -i '/secure_path/d' /etc/sudoers"
-      # Refresh packages index that the ones we need can be installed
-      sh "sudo apt-get update"
-      # Install graphviz so that the viz specs can run
-      sh "sudo apt-get install graphviz -y"
-
-      # Install the other gem deps, etc
-      Rake::Task["spec:deps"].invoke
-    end
-  end
-
   task :clean do
     rm_rf "tmp"
   end
