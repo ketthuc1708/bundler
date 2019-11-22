@@ -45,8 +45,6 @@ namespace :spec do
       system "sudo sed -i '/secure_path/d' /etc/sudoers"
       # Refresh packages index that the ones we need can be installed
       sh "sudo apt-get update"
-      # Install groff so ronn can generate man/help pages
-      sh "sudo apt-get install groff-base=1.22.3-10 -y"
       # Install graphviz so that the viz specs can run
       sh "sudo apt-get install graphviz -y"
 
